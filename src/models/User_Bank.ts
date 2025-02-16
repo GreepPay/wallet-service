@@ -1,29 +1,41 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
+import { Wallet } from "./wallet";
 
 @Entity()
-export class Wallet extends BaseModel {
+export class User_Bank extends BaseModel {
   @Column({ type: "uuid", unique: true })
-  uuid!: string; // UUID for external identification
+  uuid!: string;
 
   @Column({ type: "int" })
-  user_id!: number; // ID of the user
+  user_id!: number;
 
   @Column({ type: "int" })
-  wallet_id!: number; // ID of the wallet
+  wallet_id!: number;
 
   @Column({ type: "varchar", length: 50 })
-  bank_code!: string; // Bank code
+  bank_code!: string;
 
   @Column({ type: "varchar", length: 100 })
-  bank_name!: string; // Bank name
+  bank_name!: string;
 
   @Column({ type: "varchar", length: 20 })
-  account_no!: string; // Bank account number
+  account_no!: string;
+
+  @Column({ type: "varchar", length: 10 })
+  currency!: string;
 
   @Column({ type: "boolean", default: false })
-  is_verified!: boolean; // Verification status, default is false
+  is_verified!: boolean;
+
+  @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
+  state!: "active" | "archived"; // transaction
 
   @Column({ type: "text", nullable: true })
-  meta_data!: string; // Additional metadata (optional)
+  meta_data!: string | null;
+
+  // Explicit relationship with Wallet
+  @ManyToOne(() => Wallet, (wallet) => wallet.user_banks)
+  @JoinColumn({ name: "wallet_id" })
+  wallet!: Wallet;
 }

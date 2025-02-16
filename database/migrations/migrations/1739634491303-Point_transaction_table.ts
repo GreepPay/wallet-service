@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import type { MigrationInterface, QueryRunner } from "typeorm";
 import pkg from "typeorm";
-const { Table, TableForeignKey } = pkg;
+const { Table } = pkg;
 
 export class CreatePointTransactionTable1739119668134
   implements MigrationInterface
@@ -11,13 +11,6 @@ export class CreatePointTransactionTable1739119668134
       new Table({
         name: "point_transaction",
         columns: [
-          {
-            name: "id",
-            type: "int",
-            isPrimary: true,
-            isGenerated: true,
-            generationStrategy: "increment",
-          },
           { name: "uuid", type: "varchar", isUnique: true },
           {
             name: "dr_or_cr",
@@ -28,8 +21,8 @@ export class CreatePointTransactionTable1739119668134
           { name: "user_id", type: "int" },
           { name: "amount", type: "decimal", precision: 10, scale: 2 },
           { name: "point_balance", type: "decimal", precision: 10, scale: 2 },
-          { name: "charge_id", type: "varchar", length: 255 },
-          { name: "chargeable_type", type: "varchar", length: 255 },
+          { name: "charge_id", type: "varchar" },
+          { name: "chargeable_type", type: "varchar" },
           { name: "description", type: "text" },
           {
             name: "status",
@@ -37,9 +30,14 @@ export class CreatePointTransactionTable1739119668134
             enum: ["default", "pending", "successful"],
             default: "'default'",
           },
-          { name: "reference", type: "varchar", length: 255 },
+          { name: "reference", type: "varchar" },
           { name: "extra_data", type: "text", isNullable: true },
-          { name: "currency", type: "varchar", default: "'USDC'" },
+          {
+            name: "currency",
+            type: "varchar",
+            length: "10",
+            default: "'USDC'",
+          },
           {
             name: "created_at",
             type: "timestamp",

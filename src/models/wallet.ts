@@ -1,41 +1,62 @@
-import "reflect-metadata";
-import { Entity, Column, BaseEntity } from "typeorm";
+import { Entity, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
+import { BaseModel } from "./BaseModel";
+import { Transaction } from "./Transaction";
+import { Point_Transaction } from "./Point_Transaction";
+import { User_Bank } from "./User_Bank";
 
 @Entity()
-export class Wallet extends BaseEntity {
+export class Wallet extends BaseModel {
   @Column({ type: "uuid", unique: true })
-  uuid!: string; // UUID for external identification
+  uuid!: string;
 
   @Column({ type: "varchar", default: "0" })
-  total_balance!: string; // Total balance, default is '0'
+  total_balance!: string;
 
   @Column({ type: "varchar", default: "0" })
-  point_balance!: string; // Point balance, default is '0'
+  point_balance!: string;
 
   @Column({ type: "varchar", default: "0" })
-  credited_amount!: string; // Credited amount, default is '0'
+  credited_amount!: string;
 
   @Column({ type: "varchar", default: "0" })
-  debited_amount!: string; // Debited amount, default is '0'
+  debited_amount!: string;
 
   @Column({ type: "varchar", default: "0" })
-  locked_balance!: string; // Locked balance, default is '0'
+  locked_balance!: string;
 
   @Column({ type: "varchar", default: "0" })
-  credited_point_amount!: string; // Credited point amount, default is '0'
+  credited_point_amount!: string;
 
   @Column({ type: "varchar", default: "0" })
-  debited_point_amount!: string; // Debited point amount, default is '0'
+  debited_point_amount!: string;
 
   @Column({ type: "varchar", default: "0" })
-  cash_point_balance!: string; // Cash point balance, default is '0'
+  cash_point_balance!: string;
 
   @Column({ type: "varchar", default: "0" })
-  cash_per_point!: string; // Cash per point, default is '0'
+  cash_per_point!: string;
 
   @Column({ type: "int", unique: true })
-  user_id!: number; // User ID, unique
+  user_id!: number;
 
   @Column({ type: "varchar", nullable: true })
-  wallet_account!: string | null; // Wallet account, nullable
+  wallet_account!: string | null;
+
+  @Column({ type: "varchar", default: "USDC" })
+  currency!: string;
+
+  // Explicit relationship with Transactions
+  @OneToMany(() => Transaction, (transaction) => transaction.wallet)
+  transactions!: Transaction[];
+
+  // Explicit relationship with Point_Transactions
+  @OneToMany(
+    () => Point_Transaction,
+    (pointTransaction) => pointTransaction.wallet,
+  )
+  point_transactions!: Point_Transaction[];
+
+  // Explicit relationship with User_Bank
+  @OneToMany(() => User_Bank, (userBank) => userBank.wallet)
+  user_banks!: User_Bank[];
 }

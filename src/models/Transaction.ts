@@ -1,57 +1,60 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
-import { IsEnum } from "class-validator";
+import { Wallet } from "./wallet";
 
 @Entity()
 export class Transaction extends BaseModel {
   @Column({ type: "uuid", unique: true })
-  uuid!: string; // UUID for external identification
+  uuid!: string;
 
   @Column({ type: "enum", enum: ["credit", "debit"] })
-  @IsEnum(["credit", "debit"])
-  dr_or_cr!: "credit" | "debit"; // Credit or Debit transaction
+  dr_or_cr!: "credit" | "debit";
 
-  @Column({ type: "varchar", default: "ngn" })
-  currency!: string; // Currency, default is 'ngn'
-
-  @Column({ type: "int" })
-  wallet_id!: number; // Wallet ID
+  @Column({ type: "varchar", default: "USDC" })
+  currency!: string;
 
   @Column({ type: "int" })
-  user_id!: number; // User ID
+  wallet_id!: number;
+
+  @Column({ type: "int" })
+  user_id!: number;
+
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  amount!: string;
+
+  @Column({ type: "decimal", precision: 10, scale: 2 })
+  wallet_balance!: string;
 
   @Column({ type: "varchar" })
-  amount!: string; // Transaction amount
+  charge_id!: string;
 
   @Column({ type: "varchar" })
-  wallet_balance!: string; // Wallet balance after transaction
+  chargeable_type!: string;
 
   @Column({ type: "varchar" })
-  charge_id!: string; // Charge ID
-
-  @Column({ type: "varchar" })
-  chargeable_type!: string; // Chargeable type
-
-  @Column({ type: "varchar" })
-  description!: string; // Transaction description
+  description!: string;
 
   @Column({
     type: "enum",
     enum: ["default", "pending", "successful"],
     default: "default",
   })
-  @IsEnum(["default", "pending", "successful"])
-  status!: "default" | "pending" | "successful"; // Transaction status
+  status!: "default" | "pending" | "successful";
 
   @Column({ type: "varchar" })
-  charges!: string; // Charges applied
+  charges!: string;
 
   @Column({ type: "varchar" })
-  reference!: string; // Transaction reference
+  reference!: string;
 
-  @Column({ type: "varchar", nullable: true })
-  extra_data!: string | null; // Extra data, nullable
+  @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
+  state!: "active" | "archived"; // transaction
 
   @Column({ type: "varchar", default: "unwind-wallet" })
-  gateway!: string; // Gateway, default is 'unwind-wallet'
+  gateway!: string;
+
+  // Explicit relationship with Wallet
+  @ManyToOne(() => Wallet, (wallet) => wallet.transactions)
+  @JoinColumn({ name: "wallet_id" })
+  wallet!: Wallet;
 }
