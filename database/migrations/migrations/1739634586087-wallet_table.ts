@@ -30,6 +30,12 @@ export class CreateWalletTable1739119668136 implements MigrationInterface {
           { name: "wallet_account", type: "varchar", isNullable: true },
           { name: "currency", type: "varchar", default: "'USDC'" },
           {
+            name: "state",
+            type: "enum",
+            enum: ["active", "archived"],
+            default: "'active'",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",

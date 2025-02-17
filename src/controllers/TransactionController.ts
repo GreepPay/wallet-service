@@ -6,7 +6,7 @@ import type {
   CreateTransactionForm,
   UpdateTransactionStatusForm,
   SoftDeleteTransactionForm,
-} from "../forms";
+} from "../forms/TransactionForm";
 
 export class TransactionController {
   // Create a new transaction

@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import type { BunRequest } from "../routes/router";
 import HttpResponse from "../common/Httpresponse";
-import { PointTransactionService } from "../services/Point_TransactionService";
+import { PointTransactionService } from "../services/PointTransactionService";
 import type {
   CreatePointTransactionForm,
   UpdatePointTransactionStatusForm,
