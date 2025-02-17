@@ -1,9 +1,9 @@
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
-import { Wallet } from "./wallet";
+import { Wallet } from "./Wallet";
 
 @Entity()
-export class User_Bank extends BaseModel {
+export class UserBank extends BaseModel {
   @Column({ type: "uuid", unique: true })
   uuid!: string;
 
