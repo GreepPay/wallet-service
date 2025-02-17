@@ -46,6 +46,7 @@ export interface CreateUserBankResponse {
 export interface UpdateUserBankResponse {
   success: boolean; // Indicates if the update was successful
   message: string; // A message describing the result
+  user_bank: User_Bank;
 }
 
 // Response for soft-deleting a user bank

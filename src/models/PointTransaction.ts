@@ -25,6 +25,9 @@ export class PointTransaction extends BaseModel {
   @Column({ type: "varchar", length: 255 })
   charge_id!: string;
 
+  @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
+  state!: "active" | "archived"; // transaction
+
   @Column({ type: "varchar", length: 255 })
   chargeable_type!: string;
 

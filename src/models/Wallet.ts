@@ -27,6 +27,9 @@ export class Wallet extends BaseModel {
   @Column({ type: "varchar", default: "0" })
   credited_point_amount!: string;
 
+  @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
+  state!: "active" | "archived"; // transaction
+
   @Column({ type: "varchar", default: "0" })
   debited_point_amount!: string;
 

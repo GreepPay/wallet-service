@@ -16,6 +16,12 @@ export class CreateTransactionTable1739119668135 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
+          {
+            name: "state",
+            type: "enum",
+            enum: ["active", "archived"],
+            default: "'active'",
+          },
           { name: "uuid", type: "varchar", isUnique: true },
           {
             name: "dr_or_cr",

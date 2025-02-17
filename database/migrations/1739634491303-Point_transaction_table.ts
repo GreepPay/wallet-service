@@ -17,6 +17,13 @@ export class CreatePointTransactionTable1739119668134
             type: "enum",
             enum: ["credit", "debit"],
           },
+
+          {
+            name: "state",
+            type: "enum",
+            enum: ["active", "archived"],
+            default: "'active'",
+          },
           { name: "wallet_id", type: "int" },
           { name: "user_id", type: "int" },
           { name: "amount", type: "decimal", precision: 10, scale: 2 },

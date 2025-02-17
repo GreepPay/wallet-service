@@ -31,6 +31,12 @@ export class CreateUserBankTable1739119668137 implements MigrationInterface {
             default: "CURRENT_TIMESTAMP",
           },
           {
+            name: "state",
+            type: "enum",
+            enum: ["active", "archived"],
+            default: "'active'",
+          },
+          {
             name: "updated_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",

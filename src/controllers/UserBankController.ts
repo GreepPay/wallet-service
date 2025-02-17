@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import type { BunRequest } from "../routes/router";
-import HttpResponse from "../common/Httpresponse;
+import HttpResponse from "../common/Httpresponse";
 import { UserBankService } from "../services/UserBankService";
 import type {
   CreateUserBankForm,
@@ -22,14 +22,10 @@ export class UserBankController {
 
   // Update user bank
   async updateUserBank(request: BunRequest) {
-    let data: UpdateUserBankForm =
-      (await request.json()) as UpdateUserBankForm;
+    let data: UpdateUserBankForm = (await request.json()) as UpdateUserBankForm;
     try {
       let response = await new UserBankService().updateUserBank(data);
-      return HttpResponse.success(
-        "User bank updated successfully",
-        response,
-      );
+      return HttpResponse.success("User bank updated successfully", response);
     } catch (error: any) {
       return HttpResponse.failure(error.message, 400);
     }

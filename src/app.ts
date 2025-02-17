@@ -1,3 +1,4 @@
+import "dotenv/config";
 import "reflect-metadata";
 import router from "./routes";
 import { AppDataSource } from "./data-source.ts";
