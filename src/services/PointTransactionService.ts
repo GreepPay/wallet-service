@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
-import { Point_Transaction } from "../models/Point_Transaction";
-import { Wallet } from "../models/wallet";
+import { Point_Transaction } from "../models/PointTransaction";
+import { Wallet } from "../models/Wallet";
 import type {
   CreatePointTransactionForm,
   UpdatePointTransactionStatusForm,
@@ -8,7 +8,7 @@ import type {
   CreatePointTransactionResponse,
   UpdatePointTransactionStatusResponse,
   SoftDeletePointTransactionResponse,
-} from "../forms/Point_TransactionForm";
+} from "../forms/PointTransactionForm";
 
 export class PointTransactionService {
   // Create a new point transaction

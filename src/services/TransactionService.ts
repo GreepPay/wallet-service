@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { Transaction } from "../models/Transaction";
-import { Wallet } from "../models/wallet";
+import { Wallet } from "../models/Wallet";
 import type {
   CreateTransactionForm,
   UpdateTransactionStatusForm,

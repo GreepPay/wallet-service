@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { Wallet } from "../models/wallet";
+import { Wallet } from "../models/Wallet";
 import type {
   CreateWalletForm,
   UpdateWalletBalanceForm,
@@ -7,7 +7,7 @@ import type {
   CreateWalletResponse,
   UpdateWalletBalanceResponse,
   SoftDeleteWalletResponse,
-} from "../forms/walletForm";
+} from "../forms/WalletForm";
 
 export class WalletService {
   // Create a new wallet

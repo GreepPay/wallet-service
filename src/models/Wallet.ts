@@ -1,8 +1,8 @@
 import { Entity, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Transaction } from "./Transaction";
-import { Point_Transaction } from "./Point_Transaction";
-import { User_Bank } from "./User_Bank";
+import { Point_Transaction } from "./PointTransaction";
+import { User_Bank } from "./UserBank";
 
 @Entity()
 export class Wallet extends BaseModel {

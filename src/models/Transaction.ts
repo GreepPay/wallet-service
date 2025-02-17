@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
-import { Wallet } from "./wallet";
+import { Wallet } from "./Wallet";
 
 @Entity()
 export class Transaction extends BaseModel {
@@ -50,7 +50,7 @@ export class Transaction extends BaseModel {
   @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
   state!: "active" | "archived"; // transaction
 
-  @Column({ type: "varchar", default: "unwind-wallet" })
+  @Column({ type: "varchar", default: "Greep-wallet" })
   gateway!: string;
 
   // Explicit relationship with Wallet

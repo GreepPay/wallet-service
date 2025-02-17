@@ -1,4 +1,4 @@
-import type { User_Bank } from "../models/User_Bank";
+import type { User_Bank } from "../models/UserBank";
 
 /**
  * Request Forms

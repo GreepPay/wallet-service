@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { User_Bank } from "../models/User_Bank";
+import { User_Bank } from "../models/UserBank";
 import type {
   CreateUserBankForm,
   UpdateUserBankForm,
@@ -7,7 +7,7 @@ import type {
   CreateUserBankResponse,
   UpdateUserBankResponse,
   SoftDeleteUserBankResponse,
-} from "../forms/User_BankForm";
+} from "../forms/UserBankForm";
 
 export class UserBankService {
   // Create a new user bank

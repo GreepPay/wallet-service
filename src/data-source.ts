@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 import "dotenv/config";
 import "reflect-metadata";
-import { Point_Transaction } from "./models/Point_Transaction";
+import { Point_Transaction } from "./models/PointTransaction";
 import { Transaction } from "./models/Transaction";
-import { User_Bank } from "./models/User_Bank";
-import { Wallet } from "./models/wallet";
+import { User_Bank } from "./models/UserBank";
+import { Wallet } from "./models/Wallet";
 import pkg from "typeorm";
 const { DataSource } = pkg;
 

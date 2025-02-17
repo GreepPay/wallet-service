@@ -6,7 +6,7 @@ import type {
   CreatePointTransactionForm,
   UpdatePointTransactionStatusForm,
   SoftDeletePointTransactionForm,
-} from "../forms/Point_TransactionForm";
+} from "../forms/PointTransactionForm";
 
 export class PointTransactionController {
   // Create a new point transaction
