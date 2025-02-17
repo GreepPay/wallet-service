@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { User_Bank } from "../models/User_Bank";
+import { UserBank } from "../models/UserBank";
 import type {
   CreateUserBankForm,
   UpdateUserBankForm,
@@ -14,10 +14,10 @@ export class UserBankService {
   async createUserBank(
     form: CreateUserBankForm,
   ): Promise<CreateUserBankResponse> {
-    const userBankRepository = AppDataSource.getRepository(User_Bank);
+    const userBankRepository = AppDataSource.getRepository(UserBank);
 
     // Create the user bank
-    const userBank = new User_Bank();
+    const userBank = new UserBank();
     userBank.uuid = form.uuid;
     userBank.user_id = form.user_id;
     userBank.wallet_id = form.wallet_id;
@@ -40,7 +40,7 @@ export class UserBankService {
   async updateUserBank(
     form: UpdateUserBankForm,
   ): Promise<UpdateUserBankResponse> {
-    const userBankRepository = AppDataSource.getRepository(User_Bank);
+    const userBankRepository = AppDataSource.getRepository(UserBank);
 
     // Find the user bank
     const userBank = await userBankRepository.findOne({
@@ -73,7 +73,7 @@ export class UserBankService {
   async softDeleteUserBank(
     form: SoftDeleteUserBankForm,
   ): Promise<SoftDeleteUserBankResponse> {
-    const userBankRepository = AppDataSource.getRepository(User_Bank);
+    const userBankRepository = AppDataSource.getRepository(UserBank);
 
     // Find the user bank
     const userBank = await userBankRepository.findOne({

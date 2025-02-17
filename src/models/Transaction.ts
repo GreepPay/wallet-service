@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
-import { Wallet } from "./BaseWallet";
+import { Wallet } from "./Wallet";
 
 @Entity()
 export class Transaction extends BaseModel {
