@@ -1,4 +1,4 @@
-import type { Point_Transaction } from "../models/Point_Transaction";
+import type { Point_Transaction } from "../models/PointTransaction";
 
 /**
  * Request Forms

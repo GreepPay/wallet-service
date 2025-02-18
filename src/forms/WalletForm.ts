@@ -1,4 +1,4 @@
-import type { Wallet } from "../models/wallet";
+import type { Wallet } from "../models/Wallet";
 
 /**
  * Request Forms
