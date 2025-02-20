@@ -50,7 +50,7 @@ export class Transaction extends BaseModel {
   @Column({ type: "enum", enum: ["active", "archived"], default: "active" })
   state!: "active" | "archived"; // transaction
 
-  @Column({ type: "varchar", default: "unwind-wallet" })
+  @Column({ type: "varchar", default: "Greep-wallet" })
   gateway!: string;
 
   // Explicit relationship with Wallet

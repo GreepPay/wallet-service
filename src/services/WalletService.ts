@@ -7,7 +7,7 @@ import type {
   CreateWalletResponse,
   UpdateWalletBalanceResponse,
   SoftDeleteWalletResponse,
-} from "../forms/walletForm";
+} from "../forms/WalletForm";
 
 export class WalletService {
   // Create a new wallet

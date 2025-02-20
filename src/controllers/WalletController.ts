@@ -6,7 +6,7 @@ import type {
   CreateWalletForm,
   UpdateWalletBalanceForm,
   SoftDeleteWalletForm,
-} from "../forms/walletForm";
+} from "../forms/WalletForm";
 
 export class WalletController {
   // Create a new wallet
