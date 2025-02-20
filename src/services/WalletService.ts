@@ -1,5 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { Wallet } from "../models/wallet";
+import { Wallet } from "../models/Wallet";
 import type {
   CreateWalletForm,
   UpdateWalletBalanceForm,

@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
-import { Point_Transaction } from "../models/Point_Transaction";
-import { Wallet } from "../models/wallet";
+import { PointTransaction } from "../models/PointTransaction";
+import { Wallet } from "../models/Wallet";
 import type {
   CreatePointTransactionForm,
   UpdatePointTransactionStatusForm,
@@ -8,7 +8,7 @@ import type {
   CreatePointTransactionResponse,
   UpdatePointTransactionStatusResponse,
   SoftDeletePointTransactionResponse,
-} from "../forms/Point_TransactionForm";
+} from "../forms/PointTransactionForm";
 
 export class PointTransactionService {
   // Create a new point transaction
@@ -16,7 +16,7 @@ export class PointTransactionService {
     form: CreatePointTransactionForm,
   ): Promise<CreatePointTransactionResponse> {
     const pointTransactionRepository =
-      AppDataSource.getRepository(Point_Transaction);
+      AppDataSource.getRepository(PointTransaction);
     const walletRepository = AppDataSource.getRepository(Wallet);
 
     // Find the wallet
@@ -29,7 +29,7 @@ export class PointTransactionService {
     }
 
     // Create the point transaction
-    const pointTransaction = new Point_Transaction();
+    const pointTransaction = new PointTransaction();
     pointTransaction.uuid = form.uuid;
     pointTransaction.dr_or_cr = form.dr_or_cr;
     pointTransaction.wallet_id = form.wallet_id;
@@ -71,7 +71,7 @@ export class PointTransactionService {
     form: UpdatePointTransactionStatusForm,
   ): Promise<UpdatePointTransactionStatusResponse> {
     const pointTransactionRepository =
-      AppDataSource.getRepository(Point_Transaction);
+      AppDataSource.getRepository(PointTransaction);
 
     // Find the point transaction
     const pointTransaction = await pointTransactionRepository.findOne({
@@ -99,7 +99,7 @@ export class PointTransactionService {
     form: SoftDeletePointTransactionForm,
   ): Promise<SoftDeletePointTransactionResponse> {
     const pointTransactionRepository =
-      AppDataSource.getRepository(Point_Transaction);
+      AppDataSource.getRepository(PointTransaction);
 
     // Find the point transaction
     const pointTransaction = await pointTransactionRepository.findOne({

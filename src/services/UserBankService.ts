@@ -7,7 +7,7 @@ import type {
   CreateUserBankResponse,
   UpdateUserBankResponse,
   SoftDeleteUserBankResponse,
-} from "../forms/User_BankForm";
+} from "../forms/UserBankForm";
 
 export class UserBankService {
   // Create a new user bank

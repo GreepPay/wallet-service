@@ -1,4 +1,4 @@
-import type { User_Bank } from "../models/User_Bank";
+import type { UserBank } from "../models/UserBank";
 
 /**
  * Request Forms
@@ -39,14 +39,14 @@ export interface SoftDeleteUserBankForm {
 
 // Response for creating a user bank
 export interface CreateUserBankResponse {
-  user_bank: User_Bank; // The created user bank object
+  user_bank: UserBank; // The created user bank object
 }
 
 // Response for updating a user bank
 export interface UpdateUserBankResponse {
   success: boolean; // Indicates if the update was successful
   message: string; // A message describing the result
-  user_bank: User_Bank;
+  user_bank: UserBank;
 }
 
 // Response for soft-deleting a user bank

@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 import "dotenv/config";
 import "reflect-metadata";
-import { Point_Transaction } from "./models/Point_Transaction";
+import { PointTransaction } from "./models/PointTransaction";
 import { Transaction } from "./models/Transaction";
-import { User_Bank } from "./models/User_Bank";
-import { Wallet } from "./models/wallet";
+import { UserBank } from "./models/UserBank";
+import { Wallet } from "./models/Wallet";
 import pkg from "typeorm";
 const { DataSource } = pkg;
 
@@ -20,7 +20,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: true,
-  entities: [Point_Transaction, Transaction, User_Bank, Wallet],
+  entities: [PointTransaction, Transaction, UserBank, Wallet],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
 });

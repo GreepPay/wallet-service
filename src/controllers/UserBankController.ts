@@ -6,7 +6,7 @@ import type {
   CreateUserBankForm,
   UpdateUserBankForm,
   SoftDeleteUserBankForm,
-} from "../forms/User_BankForm";
+} from "../forms/UserBankForm";
 
 export class UserBankController {
   // Create a new user bank

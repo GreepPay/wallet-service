@@ -1,4 +1,4 @@
-import type { Point_Transaction } from "../models/Point_Transaction";
+import type { PointTransaction } from "../models/PointTransaction";
 
 /**
  * Request Forms
@@ -38,14 +38,14 @@ export interface SoftDeletePointTransactionForm {
 
 // Response for creating a point transaction
 export interface CreatePointTransactionResponse {
-  point_transaction: Point_Transaction; // The created point transaction object
+  point_transaction: PointTransaction; // The created point transaction object
 }
 
 // Response for updating a point transaction status
 export interface UpdatePointTransactionStatusResponse {
   success: boolean; // Indicates if the update was successful
   message: string; // A message describing the result
-  point_transaction: Point_Transaction;
+  point_transaction: PointTransaction;
 }
 
 // Response for soft-deleting a point transaction
