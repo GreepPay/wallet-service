@@ -3,6 +3,9 @@ import { BaseModel } from "./BaseModel";
 import { Transaction } from "./Transaction";
 import { PointTransaction } from "./PointTransaction";
 import { UserBank } from "./UserBank";
+import { Onramp } from "./Onramp";
+import { Offramp } from "./Offramp";
+
 
 @Entity()
 export class Wallet extends BaseModel {
@@ -62,4 +65,10 @@ export class Wallet extends BaseModel {
   // Explicit relationship with User_Bank
   @OneToMany(() => UserBank, (userBank) => userBank.wallet)
   user_banks!: UserBank[];
+  
+  @OneToMany(() => Onramp, (onramp) => onramp.wallet)
+    onramp_transactions!: Onramp[];
+  
+  @OneToMany(() => Offramp, (offramp) => offramp.wallet)
+    offramp_transactions!: Offramp[];
 }
