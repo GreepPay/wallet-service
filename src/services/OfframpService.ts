@@ -48,47 +48,80 @@ export class OfframpService  {
    * @param data The payment request form data.
    * @returns A promise that resolves to a PaymentRequestResponse object.
    */
-  public  async submitPaymentRequest(
-    data: PaymentRequestForm,
-    wallet_id: number,
-    user_id: number,
-  ): Promise<PaymentRequestResponse> {
-    // Step 1: Submit the payment request via YellowCard API
-    const response = await this.yellowCard.submitPaymentRequest(data);
-  
-    // Step 2: Save the transaction to the database
-    const offrampTransaction = new Offramp();
-    offrampTransaction.uuid = response.id; // Use the transaction ID from the API response
-    offrampTransaction.wallet_id = wallet_id; // Pass wallet_id separately
-    offrampTransaction.user_id = user_id; // Pass user_id separately
-    offrampTransaction.amount = data.amount?.toString() || "0";
-    offrampTransaction.balance_after = (
-      parseFloat(data.amount?.toString() || "0") - parseFloat(response.convertedAmount?.toString() || "0")
-    ).toString();
-    offrampTransaction.payment_reference = response.sequenceId;
-    offrampTransaction.payment_channel = response.channelId;
-    offrampTransaction.description = `Withdrawal via ${response.channelId}`;
-    offrampTransaction.currency = response.currency;
-    offrampTransaction.status = response.status;
-  
-    await this.offrampRepository.save(offrampTransaction);
-  
-    // Step 3: Update the wallet balance
-    const wallet = await this.walletRepository.findOne({
-      where: { id: wallet_id },
-    });
-  
-    if (!wallet) {
-      throw new Error("Wallet not found.");
-    }
-  
-    wallet.total_balance = (
-      parseFloat(wallet.total_balance) - parseFloat(data.amount?.toString() || "0")
-    ).toString();
-    await this.walletRepository.save(wallet);
-  
-    return response;
-  }
+   public async submitPaymentRequest(
+     data: PaymentRequestForm,
+   ): Promise<PaymentRequestResponse> {
+     // Step 1: Validate the sender object based on customerType
+     const { sender, customerType } = data;
+   
+     if (customerType === "retail") {
+       if (
+         !sender?.name ||
+         !sender?.phone ||
+         !sender?.country ||
+         !sender?.address ||
+         !sender?.dob ||
+         !sender?.idNumber ||
+         !sender?.idType
+       ) {
+         throw new Error(
+           "Missing required sender details for retail customer type. Required fields: name, phone, country, address, dob, idNumber, idType."
+         );
+       }
+   
+       // Additional validation for Nigeria
+       if (sender.country === "NG" && (!sender.additionalIdType || !sender.additionalIdNumber)) {
+         throw new Error(
+           "Missing required sender details for Nigeria. Required fields: additionalIdType, additionalIdNumber."
+         );
+       }
+     } else if (customerType === "institution") {
+       // Validate institution-specific fields
+       if (!sender?.businessId || !sender?.businessName) {
+         throw new Error(
+           "Missing required sender details for institution customer type. Required fields: businessId, businessName."
+         );
+       }
+     } else {
+       throw new Error("Invalid customerType. Must be either 'retail' or 'institution'.");
+     }
+   
+     // Step 2: Submit the payment request via YellowCard API
+     const response = await this.yellowCard.submitPaymentRequest(data);
+   
+     // Step 3: Save the transaction to the database
+     const offrampTransaction = new Offramp();
+     offrampTransaction.uuid = response.id; // Use the transaction ID from the API response
+     offrampTransaction.amount = data.amount?.toString() || "0";
+     offrampTransaction.balance_after = (
+       parseFloat(data.amount?.toString() || "0") - parseFloat(response.convertedAmount?.toString() || "0")
+     ).toString();
+     offrampTransaction.payment_reference = response.sequenceId;
+     offrampTransaction.payment_channel = response.channelId;
+     offrampTransaction.description = `Withdrawal via ${response.channelId}`;
+     offrampTransaction.currency = response.currency;
+     offrampTransaction.status = response.status;
+   
+     // Assign sender fields
+     if (sender) {
+       offrampTransaction.senderName = sender.name ?? "";
+       offrampTransaction.senderCountry = sender.country ?? "";
+       offrampTransaction.senderPhone = sender.phone ?? "";
+       offrampTransaction.senderAddress = sender.address ?? "";
+       offrampTransaction.senderDob = sender.dob ?? "";
+       offrampTransaction.senderEmail = sender.email ?? "";
+       offrampTransaction.senderIdNumber = sender.idNumber ?? "";
+       offrampTransaction.senderIdType = sender.idType ?? "";
+       offrampTransaction.senderBusinessId = sender.businessId ?? "";
+       offrampTransaction.senderBusinessName = sender.businessName ?? "";
+       offrampTransaction.senderAdditionalIdType = sender.additionalIdType ?? "";
+       offrampTransaction.senderAdditionalIdNumber = sender.additionalIdNumber ?? "";
+     }
+   
+     await this.offrampRepository.save(offrampTransaction);
+   
+     return response;
+   }
 
   /**
    * Accept a payment request.

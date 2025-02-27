@@ -53,8 +53,6 @@ export class OfframpController {
 
       const response = await this.offrampService.submitPaymentRequest(
         data,
-        wallet_id,
-        user_id,
       );
 
       return HttpResponse.success("Payment request submitted successfully", response);

@@ -29,13 +29,11 @@ export class OnrampController {
   async submitPaymentCollection(request: BunRequest) {
     try {
       const data: PaymentCollectionForm = (await request.json()) as PaymentCollectionForm;
-      const wallet_id = parseInt(request.params.wallet_id, 10); // Extract wallet_id from URL params
-      const user_id = parseInt(request.params.user_id, 10); // Extract user_id from URL params
+     
 
       const response = await this.onrampService.submitPaymentCollection(
         data,
-        wallet_id,
-        user_id,
+  
       );
 
       return HttpResponse.success("Payment collection submitted successfully", response);
