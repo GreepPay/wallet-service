@@ -27,7 +27,7 @@ export class OnrampService {
    * Retrieves the list of supported countries for deposits.
    * @returns A promise that resolves to an array of supported countries.
    */
-  async getSupportedCountriesForDeposit(): Promise<
+  public async getSupportedCountriesForDeposit(): Promise<
     { country: string; code: string; currency: string; supported_methods: string[] }[]
   > {
     const supportedCountries = await this.yellowCard.getSupportedCountries("deposit");
@@ -45,7 +45,7 @@ export class OnrampService {
    * @param country_code - The two-letter country code (e.g., "NG").
    * @returns A promise that resolves to an array of PaymentChannel objects.
    */
-  async getChannels(country_code: string): Promise<PaymentChannel[]> {
+  public async getChannels(country_code: string): Promise<PaymentChannel[]> {
     return this.yellowCard.getChannels(country_code);
   }
 
@@ -54,7 +54,7 @@ export class OnrampService {
    * @param country_code - The two-letter country code (e.g., "NG").
    * @returns A promise that resolves to an array of PaymentNetwork objects.
    */
-  async getNetworks(country_code: string): Promise<PaymentNetwork[]> {
+  public async getNetworks(country_code: string): Promise<PaymentNetwork[]> {
     return this.yellowCard.getNetworks(country_code);
   }
 
@@ -63,7 +63,7 @@ export class OnrampService {
    * @param currency - The three-letter currency code (e.g., "NGN").
    * @returns A promise that resolves to an ExchangeRate object.
    */
-  async getBaseExchangeRate(currency: string): Promise<ExchangeRate> {
+  public async getBaseExchangeRate(currency: string): Promise<ExchangeRate> {
     return this.yellowCard.getBaseExchangeRate(currency);
   }
 
@@ -71,7 +71,7 @@ export class OnrampService {
    * Get the global account details.
    * @returns A promise that resolves to an AccountDetails object.
    */
-  async getGlobalAccountDetails(): Promise<AccountDetails> {
+  public async getGlobalAccountDetails(): Promise<AccountDetails> {
     return this.yellowCard.getGlobalAccountDetails();
   }
 
@@ -80,7 +80,7 @@ export class OnrampService {
    * @param data - The payment collection form data.
    * @returns A promise that resolves to a SinglePaymentCollectionResponse object.
    */
-   async submitPaymentCollection(
+  public async submitPaymentCollection(
      data: PaymentCollectionForm,
    ): Promise<SinglePaymentCollectionResponse> {
      try {
@@ -173,7 +173,7 @@ export class OnrampService {
    * @param id - The ID of the collection request.
    * @returns A promise that resolves to an AcceptPaymentCollectionResponse object.
    */
-  async acceptCollectionRequest(
+  public async acceptCollectionRequest(
     id: string,
   ): Promise<AcceptPaymentCollectionResponse> {
     return this.yellowCard.acceptCollectionRequest(id);
@@ -184,7 +184,7 @@ export class OnrampService {
    * @param id - The ID of the collection request.
    * @returns A promise that resolves to a DenyPaymentCollectionResponse object.
    */
-  async denyCollectionRequest(
+  public async denyCollectionRequest(
     id: string,
   ): Promise<DenyPaymentCollectionResponse> {
     return this.yellowCard.denyCollectionRequest(id);
@@ -195,7 +195,7 @@ export class OnrampService {
    * @param id - The ID of the collection request.
    * @returns A promise that resolves to a CancelPaymentCollectionResponse object.
    */
-  async cancelCollectionRequest(
+  public async cancelCollectionRequest(
     id: string,
   ): Promise<CancelPaymentCollectionResponse> {
     return this.yellowCard.cancelCollectionRequest(id);
@@ -206,7 +206,7 @@ export class OnrampService {
    * @param id - The ID of the collection request.
    * @returns A promise that resolves to a RefundPaymentCollectionResponse object.
    */
-  async refundCollectionRequest(
+  public async refundCollectionRequest(
     id: string,
   ): Promise<RefundPaymentCollectionResponse> {
     return this.yellowCard.refundCollectionRequest(id);
@@ -217,7 +217,7 @@ export class OnrampService {
    * @param id - The ID of the collection request.
    * @returns A promise that resolves to a SinglePaymentCollectionResponse object.
    */
-  async getSingleCollectionRequest(
+  public async getSingleCollectionRequest(
     id: string,
   ): Promise<SinglePaymentCollectionResponse> {
     return this.yellowCard.getSingleCollectionRequest(id);
@@ -228,7 +228,7 @@ export class OnrampService {
    * @param data - An object containing the URL, state, and active status of the webhook.
    * @returns A promise that resolves to a WebhookResponse object.
    */
-  async createWebhook(data: {
+  public async createWebhook(data: {
     url: string;
     state: string;
     active: boolean;
