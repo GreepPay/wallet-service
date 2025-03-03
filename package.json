@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "bun run index.ts",
+    "migrate:db": "npx typeorm-ts-node-esm migration:run -d src/data-source.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
