@@ -58,7 +58,7 @@ jobs:
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }}"
 
             # Additional variables
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_DEV }}"
+            # export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_DEV }}"
 
 
             # Remove trailing comma (if any)
@@ -125,7 +125,7 @@ jobs:
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }}"
 
             # Additional variables
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_PROD }}"
+            # export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_PROD }}"
 
 
             # Remove trailing comma (if any)
