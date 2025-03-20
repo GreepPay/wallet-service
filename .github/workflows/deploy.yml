@@ -55,17 +55,17 @@ jobs:
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_CONTROLLER_NAME=${{ vars.CRD_CONTROLLER_NAME }},"
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_GROUP=${{ vars.CRD_GROUP }},"
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_KIND=${{ vars.CRD_KIND }},"
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }}"
+            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }},"
 
             # Additional variables
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_DEV }}"
+            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_DEV }},"
 
 
             # Remove trailing comma (if any)
             export EARTHLY_BUILD_ARGS=$(echo $EARTHLY_BUILD_ARGS | sed 's/,$//')
 
             # Run earthly with the dynamically created EARTHLY_BUILD_ARGS
-            earthly --no-cache +setup --envs=${{ github.ref_name }}
+            earthly --no-cache +setup --envs=${{ github.ref_name }} --apptype="bunjs" --service="greep-wallet"
 
             az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
 
@@ -122,17 +122,17 @@ jobs:
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_CONTROLLER_NAME=${{ vars.CRD_CONTROLLER_NAME }},"
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_GROUP=${{ vars.CRD_GROUP }},"
             export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}CRD_KIND=${{ vars.CRD_KIND }},"
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }}"
+            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}DOCKER_REGISTRY=${{ vars.DOCKER_REGISTRY }},"
 
             # Additional variables
-            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_PROD }}"
+            export EARTHLY_BUILD_ARGS="${EARTHLY_BUILD_ARGS}YELLOW_CARD_BASE_URL=${{ vars.YELLOW_CARD_BASE_URL_PROD }},"
 
 
             # Remove trailing comma (if any)
             export EARTHLY_BUILD_ARGS=$(echo $EARTHLY_BUILD_ARGS | sed 's/,$//')
 
             # Run earthly with the dynamically created EARTHLY_BUILD_ARGS
-            earthly --no-cache +setup --envs=${{ github.ref_name }}
+            earthly --no-cache +setup --envs=${{ github.ref_name }} --apptype="bunjs" --service="greep-wallet"
 
             az acr login --name ${{ secrets.AZURE_REGISTRY_NAME }}
 
