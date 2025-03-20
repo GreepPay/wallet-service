@@ -66,7 +66,7 @@ router.add(
 /**
  * @swagger
  * /v1/point-transactions/{id}/status:
- *   POST:
+ *   post:
  *     tags:
  *       - Point Transactions
  *     summary: Update point transaction status
