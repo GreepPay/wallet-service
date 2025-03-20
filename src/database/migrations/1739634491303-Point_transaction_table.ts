@@ -9,7 +9,7 @@ export class CreatePointTransactionTable1739119668134
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "point_transaction",
+        name: "point_transactions",
         columns: [
           { name: "uuid", type: "varchar", isUnique: true },
           {

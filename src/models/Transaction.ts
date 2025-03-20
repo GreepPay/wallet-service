@@ -3,7 +3,7 @@ import { BaseModel } from "./BaseModel";
 import type { Wallet as WalletType } from "./Wallet";
 import { Wallet } from "./Wallet";
 
-@Entity()
+@Entity('transactions')
 export class Transaction extends BaseModel {
   @Column({ type: "uuid", unique: true })
   uuid!: string;

@@ -4,7 +4,7 @@ import { Transaction } from "./Transaction";
 import { PointTransaction } from "./PointTransaction";
 import { UserBank } from "./UserBank";
 
-@Entity()
+@Entity('wallets')
 export class Wallet extends BaseModel {
   @Column({ type: "uuid", unique: true })
   uuid!: string;

@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Wallet } from "./Wallet";
 
-@Entity()
+@Entity('point_transactions')
 export class PointTransaction extends BaseModel {
   @Column({ type: "uuid", unique: true })
   uuid!: string;

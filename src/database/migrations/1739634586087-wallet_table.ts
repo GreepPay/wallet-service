@@ -7,7 +7,7 @@ export class CreateWalletTable1739119668136 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "wallet",
+        name: "wallets",
         columns: [
           {
             name: "id",
