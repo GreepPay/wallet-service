@@ -47,16 +47,22 @@ export class PointTransactionService {
     // Save the point transaction
     const savedPointTransaction =
       await pointTransactionRepository.save(pointTransaction);
-
+  
     // Update the wallet point balance
     if (form.dr_or_cr === "credit") {
       wallet.point_balance = (
         parseFloat(wallet.point_balance) + parseFloat(form.amount)
       ).toString();
+      wallet.credited_point_amount = (
+            parseFloat(wallet.credited_point_amount) + parseFloat(form.amount)
+          ).toString();
     } else if (form.dr_or_cr === "debit") {
       wallet.point_balance = (
         parseFloat(wallet.point_balance) - parseFloat(form.amount)
       ).toString();
+      wallet.debited_point_amount = (
+            parseFloat(wallet.debited_point_amount) + parseFloat(form.amount)
+          ).toString();
     }
 
     await walletRepository.save(wallet);

@@ -49,10 +49,16 @@ export class TransactionService {
 
     // Update the wallet balance
     if (form.dr_or_cr === "credit") {
+      wallet.credited_amount = (
+        parseFloat(wallet.credited_amount) + parseFloat(form.amount)
+      ).toString();
       wallet.total_balance = (
         parseFloat(wallet.total_balance) + parseFloat(form.amount)
       ).toString();
     } else if (form.dr_or_cr === "debit") {
+       wallet.debited_amount = (
+         parseFloat(wallet.debited_amount) + parseFloat(form.amount)
+       ).toString();
       wallet.total_balance = (
         parseFloat(wallet.total_balance) - parseFloat(form.amount)
       ).toString();
