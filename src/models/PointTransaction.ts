@@ -1,8 +1,9 @@
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Wallet } from "./Wallet";
+import type { Wallet as WalletType } from "./Wallet";
 
-@Entity('point_transactions')
+@Entity("point_transactions")
 export class PointTransaction extends BaseModel {
   @Column({ type: "uuid", unique: true })
   uuid!: string;
@@ -53,5 +54,5 @@ export class PointTransaction extends BaseModel {
   // Explicit relationship with Wallet
   @ManyToOne(() => Wallet, (wallet) => wallet.point_transactions)
   @JoinColumn({ name: "wallet_id" })
-  wallet!: Wallet;
+  wallet!: WalletType;
 }

@@ -1,8 +1,11 @@
 import { Entity, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { BaseModel } from "./BaseModel";
 import { Transaction } from "./Transaction";
+import type { Transaction as TransactionType } from "./Transaction";
 import { PointTransaction } from "./PointTransaction";
+import type { PointTransaction as PointTransactionType } from "./PointTransaction";
 import { UserBank } from "./UserBank";
+import type { UserBank as UserBankType } from "./UserBank";
 
 @Entity("wallets")
 export class Wallet extends BaseModel {
@@ -50,12 +53,16 @@ export class Wallet extends BaseModel {
 
   // Explicit relationship with Transactions
   @OneToMany(() => Transaction, (transaction) => transaction.wallet)
-  transactions!: Transaction[];
+  transactions!: TransactionType[];
 
   // Explicit relationship with Point_Transactions
   @OneToMany(
     () => PointTransaction,
     (pointTransaction) => pointTransaction.wallet,
   )
-  point_transactions!: PointTransaction[];
+  point_transactions!: PointTransactionType[];
+
+  // Explicit relationship with UserBanks
+  @OneToMany(() => UserBank, (userBank) => userBank.wallet)
+  user_banks!: UserBankType[];
 }

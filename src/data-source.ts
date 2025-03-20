@@ -7,6 +7,8 @@ import { PointTransaction } from "./models/PointTransaction";
 import { Transaction } from "./models/Transaction";
 import { UserBank } from "./models/UserBank";
 import { Wallet } from "./models/Wallet";
+import { Offramp } from "./models/Offramp";
+import { Onramp } from "./models/Onramp";
 import pkg from "typeorm";
 import fs from "fs";
 
@@ -28,7 +30,7 @@ export const AppDataSource = new DataSource({
           ca: fs.readFileSync(__dirname + "/database/ca-cert.crt").toString(),
         }
       : false,
-  entities: [ PointTransaction, Transaction, UserBank, Wallet ],
+  entities: [PointTransaction, Transaction, UserBank, Wallet, Offramp, Onramp],
   subscribers: [],
   migrations: ["src/database/migrations/*.ts"],
 });
