@@ -4,6 +4,7 @@ import { Transaction } from "./Transaction";
 import { PointTransaction } from "./PointTransaction";
 import { UserBank } from "./UserBank";
 
+
 @Entity()
 export class Wallet extends BaseModel {
   @Column({ type: "uuid", unique: true })
@@ -59,7 +60,5 @@ export class Wallet extends BaseModel {
   )
   point_transactions!: PointTransaction[];
 
-  // Explicit relationship with User_Bank
-  @OneToMany(() => UserBank, (userBank) => userBank.wallet)
-  user_banks!: UserBank[];
+
 }
